@@ -1,37 +1,38 @@
+
 # PIvot
 
-A RPi OS variant for self-hosters.
+A Raspberry Pi OS variant for self-hosters.
+##  Getting Started
 
-## Connecting to PIvot
+Default connection details are managed via [`pivot-gen/config`](https://github.com/cylin577/pivot-gen/blob/master/config):
 
-Default connection details come from [`pivot-gen/config`](https://github.com/cylin577/pivot-gen/blob/master/config):
+*   **Hostname:** `pivot`
+*   **Username:** `pivot`
+*   **Password:** `tovip`
+*   **SSH:** Enabled by default
+*   **Sudo:** Passwordless access for the default user
 
-- Hostname set to `pivot`.
-- SSH enabled by default.
-- Default username: `pivot`
-- Default password: `tovip`
-- `sudo` does not require password for default user.
+---
 
-You can connect over SSH with:
+##  Connecting to PIvot
 
+### Via SSH
+Connect from your terminal using the local hostname:
 ```bash
 ssh pivot@pivot.local
 ```
 
-If mDNS not available on your network, use device IP address instead:
+*If mDNS is not supported on your network, use the device IP address: `ssh pivot@<device-ip>`*
 
-```bash
-ssh pivot@<device-ip>
-```
+### Via Web Browser
+On first boot, a setup screen is exposed on port **7681**:
+*   ```http://pivot.local:7681```
+*   ```http://<device-ip>:7681```
 
-On first boot, PIvot also exposes setup screen in browser on port `7681`:
+---
 
-- `http://pivot:7681`
-- `http://pivot.local:7681`
-- `http://<device-ip>:7681`
+##  Important Notes
 
-Change default password after first login if machine will be reachable by other devices.
-
-## Note
-
-I recommnend using [Tailscale](login.tailscale.com/admin) to reach your device outside of your LAN
+*   **Wi-Fi Setup:** If you do not use an Ethernet cable on the first boot, you must connect a keyboard and screen to the Pi to configure your wireless network manually.
+*   **Security:** If you intend to expose this device to the internet, immediately update the default password by running the `passwd` command or you could get all your data stolen if someone has access to your network
+*   **Remote Access:** For secure access outside your local network (LAN), it is highly recommended to use [Tailscale](https://login.tailscale.com/admin).
